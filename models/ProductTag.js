@@ -14,6 +14,7 @@ ProductTag.init(
       primaryKey: true,
       autoIncrement: true,
       },
+      // Foreign Key
       product_id: {
         // Sets data type as Integer
         type: DataTypes.INTEGER,
@@ -23,6 +24,7 @@ ProductTag.init(
           key: 'id',
         },
       },
+      // Foreign Key
       tag_id: {
         // Sets data type as Integer
         type: DataTypes.INTEGER,
