@@ -29,7 +29,7 @@ To run this application, open the file up to the main directory and enter "npm s
 
 **Attached is a screenshot of GET, POST, PUT, and DELETE routes for CATEGORIES, TAGS, and PRODUCTS being tested in Insomnia Core:**
 
-![Insomnia Core Route Testing](./Assets/images/E-Commerce%20Back%20End%20Insomnia%20Core%20Routes(1).png)
+![Insomnia Core Route Testing](./Assets/images/E-Commerce%20Back%20End%20Insomnia%20Core%20Routes.png)
 
 ## Video
 
