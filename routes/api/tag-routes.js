@@ -5,7 +5,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // find all tags
 router.get('/', async (req, res) => {
-// Get all tags from the tag table
+// get all tags from the tag table
 try{
   const tagData = await Tag.findAll({
     include: [{ model: Product, through: ProductTag }],
@@ -19,7 +19,7 @@ try{
 
 // find one tag by its 'id' value
 router.get('/:id', async (req, res) => {
-// find one tag by its 'id' value from the tag table
+// get one tag by its 'id' value from the tag table
 try {
   const tagData = await Tag.findByPk(req.params.id, {
     include: [{ model: Product, through: ProductTag }],
@@ -36,7 +36,7 @@ try {
 
 // create a new tag
 router.post('/', async (req, res) => {
-  // create a new tag by its 'name' name from the tag table
+  // create a new tag by its 'tag_name' from the tag table
   try {
     const locationData = await Tag.create({
       tag_name: req.body.tag_name,
@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
 
 // update a tag by its 'id' value
 router.put('/:id', async (req, res) => {
-  // update a tag's name by its `id` value from the tag table
+  // update a tag's name by its `id` value given in the request parameters from the tag table
   try {
     const tagData = await Tag.update(req.body, {
       where: {

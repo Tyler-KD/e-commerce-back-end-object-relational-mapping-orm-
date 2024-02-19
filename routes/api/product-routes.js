@@ -5,8 +5,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // find all products
 router.get('/', async (req, res) => {
-  // find all products from the product table
-  // be sure to include its associated Category and Tag data
+  // get all products from the product table
 try{
   const productData = await Product.findAll({
     include: [{ model: Category }],
@@ -18,10 +17,9 @@ try{
 }
 });
 
-// get one product
+// find one product
 router.get('/:id', async (req, res) => {
-  // find a single product by its `id` value from the product table
-  // be sure to include its associated Category and Tag data
+  // get a single product by its `id` value from the product table
   try{
     const productData = await Product.findByPk(req.params.id, {
       include: [{ model: Category }],
@@ -39,6 +37,7 @@ router.get('/:id', async (req, res) => {
 
 // create new product
 router.post('/', (req, res) => {
+  // All the fields that can be updated and the data attached to the request body.
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -47,6 +46,7 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
+//  Create a new product by its 'product_name,' 'price,' 'stock,' and 'tagIds' from the product table
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -63,6 +63,7 @@ router.post('/', (req, res) => {
       // if no product tags, just respond
       res.status(200).json(product);
     })
+    // Sends the productTagIds as a json response
     .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
       console.log(err);
@@ -72,7 +73,8 @@ router.post('/', (req, res) => {
 
 // update product
 router.put('/:id', (req, res) => {
-  // update product data by its 'name' from the product table
+  // update product data
+  // updates the products based on the 'id' given in the request parameters
   Product.update(req.body, {
     where: {
       id: req.params.id,
@@ -115,8 +117,23 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+// delete a product
+router.delete('/:id', async (req, res) => {
+  // Looks for the products based on the 'id' given in the request parameters and deletes the instance from the database
+try {
+  const productData = await Product.destroy({
+    where: {
+      id: req.params.id,
+    }
+  });
+  if (!productData) {
+    res.status(404).json({ message: 'No product found with that id!' });
+    return;
+  }
+  res.status(200).json(productData);
+} catch (err) {
+  res.status(500).json(err);
+}
 });
 
 module.exports = router;

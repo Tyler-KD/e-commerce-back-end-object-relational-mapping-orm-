@@ -47,9 +47,9 @@ N/A
 
 [Associations | Sequelize](https://sequelize.org/docs/v6/core-concepts/assocs/)
 
-[]()
+[Model Querying](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/)
 
-[]()
+[Table Relationships in Sequelize](https://levelup.gitconnected.com/table-relationships-in-sequelize-2e2533580c2a)
 
 ## Contributing
 

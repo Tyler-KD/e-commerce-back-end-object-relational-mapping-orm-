@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
 
 // create a new category
 router.post('/', async (req, res) => {
-  // create a new category by its 'name' name from the category table
+  // create a new category by its 'category_name' from the category table
   try {
     const locationData = await Category.create({
       category_name: req.body.category_name,
