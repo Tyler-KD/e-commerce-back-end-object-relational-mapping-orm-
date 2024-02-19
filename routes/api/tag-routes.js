@@ -10,9 +10,11 @@ try{
   const tagData = await Tag.findAll({
     include: [{ model: Product, through: ProductTag }],
   });
-
+  // 200 status code means the request is successful
   res.status(200).json(tagData);
 } catch (err) {
+  // 500 status code means the server encountered an unexpected condition
+  // that prevented it from fulfilling the request
   res.status(500).json(err);
 }
 });
@@ -25,6 +27,7 @@ try {
     include: [{ model: Product, through: ProductTag }],
   })
   if (!tagData) {
+    // 404 status code means the server could not understand the request
     res.status(404).json({ message: 'No tag found with that id!' });
     return;
   }

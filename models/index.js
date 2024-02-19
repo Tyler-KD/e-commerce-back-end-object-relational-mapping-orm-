@@ -20,10 +20,16 @@ Category.hasMany(Product, {
 // Products belongToMany Tags (through ProductTag)
 // The BelongsToMany association is used to create a Many-To-Many relationship between two models
 // Because foreign keys can only point to a single row, Many-To-Many relationships are implemented using a junction table (called through table in Sequelize)
-Product.belongsToMany(Tag, { through: ProductTag });
+Product.belongsToMany(Tag, { 
+  through: ProductTag,
+  foreignKey: 'product_id',
+ });
 
 // Tags belongToMany Products (through ProductTag)
-Tag.belongsToMany(Product, { through: ProductTag });
+Tag.belongsToMany(Product, { 
+  through: ProductTag,
+  foreignKey: 'tag_id',
+ });
 
 module.exports = {
   Product,

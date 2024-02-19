@@ -5,14 +5,17 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // find all products
 router.get('/', async (req, res) => {
-  // get all products from the product table
+// get all products from the product table
 try{
   const productData = await Product.findAll({
     include: [{ model: Category }],
     include: [{ model: Tag, through: ProductTag }],
   })
+  // 200 status code means the request is successful
   res.status(200).json(productData);
 } catch (err) {
+  // 500 status code means the server encountered an unexpected condition
+  // that prevented it from fulfilling the request
   res.status(500).json(err);
 }
 });
@@ -26,6 +29,7 @@ router.get('/:id', async (req, res) => {
       include: [{ model: Tag, through: ProductTag }],
     })
     if (!productData) {
+      // 404 status code means the server could not understand the request
       res.status(404).json({ message: 'No product found with that id!' });
       return;
     }

@@ -29,7 +29,7 @@ router.get('/:id', async (req, res) => {
       include: [{ model: Product }],
     })
     if (!categoryData) {
-      // 400 status code means the server could not understand the request
+      // 404 status code means the server could not understand the request
       res.status(404).json({ message: 'No category found with that id!' });
       return;
     }
