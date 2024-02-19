@@ -21,7 +21,7 @@ E-Commerce Back End Object-Relational Mapping (ORM) is an application back end f
 
 ## Installation
 
-Within the .env file, enter 'root' for DB_USER='' and 'MySQL Root Pasword' for DB_PASSWORD ='.'  This will protect the database, MySQL username, and MySQL password to an environment variable file and connect to a database using Sequelize.  To install E-Commerce End Object-Relational Mapping (ORM) dependencies, run "npm i" within the terminal of the main directory.  Then, create the schema from the MySQL shell by running "mysql -u root -p" within the terminal.  Enter 'MySQL ROOT Password' for "Enter password:."  Once connected, source the schema.sql with "source db/schema.sql" inside of MySQL.  This will create the development database.  Enter "Quit" to end the MySQL connection.  Finally, seed the database by running "npm run seed" so that routes can be tested.
+Within the .env file, enter 'root' for DB_USER='' and 'MySQL Root Pasword' for DB_PASSWORD ='.'  This will protect the database, MySQL username, and MySQL password to an environment variable file and connect to a database using Sequelize.  To install E-Commerce Back End Object-Relational Mapping (ORM) dependencies, run "npm i" within the terminal of the main directory.  Then, create the schema from the MySQL shell by running "mysql -u root -p" within the terminal.  Enter 'MySQL ROOT Password' for "Enter password:."  Once connected, source the schema.sql with "source db/schema.sql;" inside of MySQL.  This will create the development database.  Enter "Quit" to end the MySQL connection.  Finally, seed the database by running "npm run seed" so that routes can be tested.
 
 ## Usage
 
@@ -29,7 +29,7 @@ To run this application, open the file up to the main directory and enter "npm s
 
 **Attached is a screenshot of GET, POST, PUT, and DELETE routes for CATEGORIES, TAGS, and PRODUCTS being tested in Insomnia Core:**
 
-![Insomnia Core Route Testing](./Assets/images/E-Commerce%20Back%20End%20Insomnia%20Core%20Routes.png)
+![Insomnia Core Route Testing](./Assets/images/E-Commerce%20Back%20End%20Insomnia%20Core%20Routes(1).png)
 
 ## Video
 
