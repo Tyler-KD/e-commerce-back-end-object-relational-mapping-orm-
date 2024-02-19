@@ -3,16 +3,38 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
-router.get('/', (req, res) => {
-  // find all products
+// find all products
+router.get('/', async (req, res) => {
+  // find all products from the product table
   // be sure to include its associated Category and Tag data
+try{
+  const productData = await Product.findAll({
+    include: [{ model: Category }],
+    include: [{ model: Tag, through: ProductTag }],
+  })
+  res.status(200).json(productData);
+} catch (err) {
+  res.status(500).json(err);
+}
 });
 
 // get one product
-router.get('/:id', (req, res) => {
-  // find a single product by its `id`
+router.get('/:id', async (req, res) => {
+  // find a single product by its `id` value from the product table
   // be sure to include its associated Category and Tag data
+  try{
+    const productData = await Product.findByPk(req.params.id, {
+      include: [{ model: Category }],
+      include: [{ model: Tag, through: ProductTag }],
+    })
+    if (!productData) {
+      res.status(404).json({ message: 'No product found with that id!' });
+      return;
+    }
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // create new product
@@ -35,6 +57,7 @@ router.post('/', (req, res) => {
             tag_id,
           };
         });
+        // Multiple rows can be created with 'bulkCreate()' and an array
         return ProductTag.bulkCreate(productTagIdArr);
       }
       // if no product tags, just respond
@@ -49,7 +72,7 @@ router.post('/', (req, res) => {
 
 // update product
 router.put('/:id', (req, res) => {
-  // update product data
+  // update product data by its 'name' from the product table
   Product.update(req.body, {
     where: {
       id: req.params.id,

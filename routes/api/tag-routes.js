@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 // Get all tags from the tag table
 try{
   const tagData = await Tag.findAll({
-    include: [{ model: Product }],
+    include: [{ model: Product, through: ProductTag }],
   });
 
   res.status(200).json(tagData);
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
 // find one tag by its 'id' value from the tag table
 try {
   const tagData = await Tag.findByPk(req.params.id, {
-    include: [{ model: Product }],
+    include: [{ model: Product, through: ProductTag }],
   })
   if (!tagData) {
     res.status(404).json({ message: 'No tag found with that id!' });
